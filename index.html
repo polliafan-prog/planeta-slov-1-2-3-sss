@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,7 +7,7 @@
 <title>Планета слов</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kurale&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 :root{
@@ -154,9 +154,72 @@ button{font-family:inherit;color:inherit}
   .msg h2{font-size:22px}
   .msg p{margin-bottom:12px}
 }
+
+/* cover (arched sign, like «Лагерь на лесном озере») */
+:root{--sign-solid:#fcf8ee;--sign:rgba(252,248,238,.95);--wood:#b8833e;--title:#236194;--acc:#FFDB58;--acc-d:#E8A317}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sign-solid:#1a2620;--sign:rgba(26,38,32,.95);--title:#A2C268}}
+:root[data-theme="dark"]{--sign-solid:#1a2620;--sign:rgba(26,38,32,.95);--title:#A2C268}
+.cover{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:flex-start;
+  padding:max(14px,env(safe-area-inset-top,0px)) 16px max(14px,env(safe-area-inset-bottom,0px)) max(4vw,16px);
+  background:linear-gradient(90deg,rgba(40,28,10,.34) 0%,rgba(40,28,10,.1) 45%,rgba(40,28,10,0) 65%)}
+.sign{position:relative;width:min(440px,100%);max-height:100%;overflow:auto;background:var(--sign);color:var(--ink);
+  border-radius:220px 220px 26px 26px;padding:62px 22px 18px;text-align:center;
+  box-shadow:inset 0 0 0 5px var(--sign),inset 0 0 0 7px var(--wood),0 10px 0 rgba(70,45,15,.3),0 30px 70px rgba(30,20,5,.35);
+  -webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.eyebrow{margin:0;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--wood)}
+.sign h1{margin:6px 0 4px;font-family:'Kurale',Georgia,serif;font-weight:400;color:var(--title);line-height:.95;text-wrap:balance}
+.sign h1 .t1{display:block;font-size:clamp(46px,7vw,62px)}
+.sign h1 .t2{display:block;font-size:clamp(22px,3vw,28px);margin-top:4px;color:var(--ink)}
+.sign .lead{font-size:13.5px;line-height:1.5;margin:10px auto 12px;max-width:34ch}
+.sign .tabs{display:flex;flex-direction:column;gap:4px;margin:0 0 14px;text-align:left}
+.sign .tab{flex-direction:row;align-items:center;gap:12px;border:0;border-bottom:1px dashed var(--line);border-radius:0;padding:8px 12px;background:transparent}
+.sign .tab::before{content:'';flex:none;width:16px;height:16px;border-radius:50%;border:2px solid var(--wood)}
+.sign .tab b{font-family:'Kurale',Georgia,serif;font-weight:400;font-size:19px}
+.sign .tab span{font-size:12px;color:var(--ink2);font-weight:600}
+.sign .tab[aria-selected="true"]{background:var(--leaf-soft);border-radius:14px;border-bottom-color:transparent}
+.sign .tab[aria-selected="true"]::before{background:var(--acc-d);box-shadow:inset 0 0 0 3px var(--sign)}
+.sign .type-note{font-size:12.5px;margin:4px 0 10px}
+.pick{position:relative;width:min(600px,100%);max-height:100%;overflow:auto;background:var(--sign-solid);color:var(--ink);border-radius:18px;padding:16px 20px 0;
+  box-shadow:inset 0 0 0 5px var(--sign-solid),inset 0 0 0 7px var(--wood),0 10px 0 rgba(70,45,15,.3),0 30px 70px rgba(30,20,5,.35);-webkit-overflow-scrolling:touch}
+.pick-top{display:flex;align-items:center;gap:12px;margin:2px 0 10px;text-align:left}
+.back{flex:none;border:2px solid var(--line);background:transparent;border-radius:12px;padding:8px 12px;font-weight:700;font-size:14px;cursor:pointer;color:var(--ink)}
+.pick-title{display:flex;flex-direction:column;min-width:0}
+.pick-title b{font-family:'Kurale',Georgia,serif;font-weight:400;font-size:24px;color:var(--title);line-height:1.1}
+.pick-title .type-note{margin:2px 0 0;font-size:13px}
+.pick .grid{grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px;margin-bottom:8px}
+.pick .tile img{width:62px;height:62px}
+.pick .foot{position:sticky;bottom:0;margin:0 -20px;padding:10px 20px 14px;background:var(--sign-solid);border-top:1px dashed var(--line);text-align:center;z-index:2}
+.pick .btn{font-family:'Kurale',Georgia,serif;font-weight:400;font-size:24px;padding:11px 44px;border-radius:999px}
+@media (max-aspect-ratio:4/5){.pick{width:min(600px,100%);max-height:80%}}
+@media (max-height:440px){.pick,.sign{width:min(600px,calc(100% - 58px))}.pick{padding-top:10px}.pick-top{margin-bottom:6px}.pick-title b{font-size:19px}.pick .tile img{width:48px;height:48px}.pick .grid{grid-template-columns:repeat(auto-fill,minmax(74px,1fr));gap:6px}.pick .foot{padding:6px 20px 8px}.pick .btn{font-size:20px;padding:8px 36px}}
+.sign .tile img{width:58px;height:58px}
+.sign .tile{font-size:13px;border-radius:14px}
+.sign .vol-row{margin-bottom:12px}
+.sign .btn{font-family:'Kurale',Georgia,serif;font-weight:400;font-size:24px;padding:12px 40px;border-radius:999px}
+.sign .credit{margin-top:10px}
+body.intro-on .fsb{left:auto;bottom:auto;right:calc(12px + env(safe-area-inset-right,0px));top:calc(env(safe-area-inset-top,0px) + 10px)}
+@media (max-aspect-ratio:4/5){
+  .cover{align-items:flex-end;justify-content:center;padding-left:16px;background:linear-gradient(0deg,rgba(40,28,10,.32),rgba(40,28,10,0) 60%)}
+  .sign{width:min(460px,100%);max-height:72%;border-radius:160px 160px 24px 24px;padding-top:44px}
+  .sign .lead{display:none}
+}
+@media (max-height:620px){
+  .sign{border-radius:130px 130px 20px 20px;padding:34px 18px 14px}
+  .sign h1 .t1{font-size:40px}.sign h1 .t2{font-size:20px;margin-top:2px}
+  .sign .lead{display:none}
+  .sign .tab{padding:5px 12px}
+}
+@media (max-height:440px){
+  .sign{width:min(620px,100%);border-radius:90px 90px 18px 18px;padding:20px 16px 10px}
+  .eyebrow{display:none}
+  .sign h1{margin:0 0 6px}.sign h1 .t1{font-size:30px;display:inline}.sign h1 .t2{font-size:18px;display:inline;margin-left:6px}
+  .sign .tabs{flex-direction:row}.sign .tab{flex:1;flex-direction:column;align-items:flex-start;gap:0;border-bottom:0;padding:5px 8px}
+  .sign .tab::before{display:none}.sign .tab b{font-size:16px}.sign .tab span{font-size:10.5px}
+  .sign .type-note{display:none}
+}
 </style>
 </head>
-<body>
+<body class="intro-on">
 <canvas id="c" aria-label="Планета с предметами"></canvas>
 <div class="dof"></div>
 <div class="glow"></div>
@@ -172,17 +235,26 @@ button{font-family:inherit;color:inherit}
 <button id="bFs" class="fsb" aria-label="Во весь экран" title="Во весь экран" hidden>⛶</button>
 <button id="bHint" class="hint" hidden>💡<span>Подсказка</span></button>
 
-<div id="intro" class="ov">
-  <div class="panel intro-panel">
-    <h1>Планета слов</h1>
+<div id="intro" class="cover">
+  <div class="sign" id="step1">
+    <p class="eyebrow">Слоговая структура слова</p>
+    <h1><span class="t1">Планета</span><span class="t2">слов</span></h1>
     <p class="lead">Крутите планету пальцем или мышкой и ищите предмет, который она загадывает. Найденное слово ребёнок прохлопывает по слогам.</p>
-    <div class="vol-row"><span>Звук</span><button class="vb" data-snd aria-label="Звук" title="Звук">🔊</button><input class="vr" data-vol type="range" min="0" max="100" value="80" aria-label="Громкость"></div>
     <div id="tabs" class="tabs" role="tablist"></div>
-    <p id="typeNote" class="type-note"></p>
+    <div class="vol-row"><span>Звук</span><button class="vb" data-snd aria-label="Звук" title="Звук">🔊</button><input class="vr" data-vol type="range" min="0" max="100" value="80" aria-label="Громкость"></div>
+    <button id="bToWords" class="btn">Выбрать слова</button>
+    <div class="credit">тгк: @polliafania</div>
+  </div>
+  <div class="pick" id="step2" hidden>
+    <div class="pick-top">
+      <button id="bBack" class="back" aria-label="Назад к выбору планеты">← Назад</button>
+      <div class="pick-title"><b id="pTitle">Планета 2</b><span id="typeNote" class="type-note"></span></div>
+    </div>
     <div class="pick-head"><span id="pCount">Выберите слова: 0</span><button id="bAll" class="link">Выбрать все</button></div>
     <div id="grid" class="grid"></div>
-    <button id="bStart" class="btn" disabled>Начать!</button>
-    <div class="credit">тгк: @polliafania</div>
+    <div class="foot">
+      <button id="bStart" class="btn" disabled>Начать!</button>
+    </div>
   </div>
 </div>
 
@@ -1383,8 +1455,10 @@ const birds=[];
 /* ---------- camera / zoom ---------- */
 let zoom=1,D=20;
 function fillK(){return innerWidth<innerHeight?.9:.8;}
+var INTRO_VIEW=true;
 function updateCamera(){
   const w=innerWidth,h=innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;
+  if(INTRO_VIEW){if(w/h<.8)camera.setViewOffset(w,h,0,h*.24,w,h);else camera.setViewOffset(w,h,-Math.min(w*.22,Math.max(0,(Math.min(440,w*.5)+w*.04)-w*.25)),0,w,h);}else camera.clearViewOffset();
   const f=camera.fov*PI/180,k=fillK()*zoom*(w<h?w/h:1);
   const ang=Math.min(1.35,Math.atan(Math.tan(f/2)*k));
   D=Math.max(R+2.6,R/Math.sin(ang));camera.position.set(0,0,D);camera.lookAt(0,0,0);
@@ -1503,11 +1577,12 @@ function startGame(){
   ac();startMusic();
   const words=SETS[curType].words.filter(w=>selected[curType].has(w.id));if(!words.length)return;
   makeThumbs(words);
+  INTRO_VIEW=false;document.body.classList.remove('intro-on');
   buildWorld(curType,words);zoom=1;updateCamera();vel.set(0,0,0);hintAnim=null;
   queue=shuffle(words.slice());qi=0;mode='play';cardOpen=false;
   ['intro','win','card','confirm'].forEach(id=>$(id).hidden=true);
   $('hud').hidden=false;$('bHint').hidden=false;setTarget();}
-function goMenu(){mode='intro';cardOpen=false;['win','card','confirm','hud','bHint'].forEach(id=>$(id).hidden=true);$('intro').hidden=false;}
+function goMenu(){introStep(1);INTRO_VIEW=true;document.body.classList.add('intro-on');updateCamera();mode='intro';cardOpen=false;['win','card','confirm','hud','bHint'].forEach(id=>$(id).hidden=true);$('intro').hidden=false;}
 let clapIdx=0;
 function openCard(w){
   cardOpen=true;duck(.06);$('cImg').src=w.thumb||'';$('cTitle').textContent=PRAISE[Math.floor(Math.random()*PRAISE.length)];
@@ -1540,7 +1615,7 @@ addEventListener('keydown',e=>{if((e.code==='Space'||e.key===' ')&&cardOpen&&!$(
 function renderTabs(){const t=$('tabs');t.innerHTML='';
   [1,2,3].forEach(k=>{const b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.setAttribute('aria-selected',k===curType);
     b.innerHTML='<b>Планета '+k+'</b><span>'+k+' тип слоговой структуры</span>';b.onpointerdown=b.onclick=(e)=>{if(e&&e.type==='click'&&e.detail!==0&&b._pd){b._pd=0;return;}if(e&&e.type==='pointerdown')b._pd=1;if(curType===k)return;curType=k;renderTabs();renderPicker();};t.appendChild(b);});
-  const sb=SETS[curType].sub;$('typeNote').textContent=sb.charAt(0).toUpperCase()+sb.slice(1);}
+  const sb=SETS[curType].sub;$('typeNote').textContent=sb.charAt(0).toUpperCase()+sb.slice(1);$('pTitle').textContent='Планета '+curType+' · '+curType+' тип';}
 let pickTok=0;const BLANK='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 function renderPicker(){
   const list=SETS[curType].words,tok=++pickTok;
@@ -1555,13 +1630,16 @@ function updPick(){const n=selected[curType].size,all=SETS[curType].words.length
   $('bAll').textContent=n===all?'Снять все':'Выбрать все';}
 $('bAll').onclick=()=>{const sel=selected[curType],list=SETS[curType].words;if(sel.size===list.length)sel.clear();else list.forEach(w=>sel.add(w.id));
   [...$('grid').children].forEach((b,i)=>b.setAttribute('aria-pressed',sel.has(list[i].id)));updPick();};
+function introStep(n){$('step1').hidden=n!==1;$('step2').hidden=n!==2;if(n===2)$('step2').scrollTop=0;}
+$('bToWords').onclick=()=>introStep(2);$('bBack').onclick=()=>introStep(1);
 $('bStart').onclick=()=>{const b=$('bStart');if(b.disabled)return;b.disabled=true;b.textContent='Загружаем…';setTimeout(()=>{startGame();b.textContent='Начать!';b.disabled=false;},40);};
 
 /* fullscreen */
 (function(){const d=document,el=d.documentElement,b=$('bFs');
   const can=d.fullscreenEnabled||d.webkitFullscreenEnabled;if(!can)return;b.hidden=false;
   const isFs=()=>!!(d.fullscreenElement||d.webkitFullscreenElement);
-  const upd=()=>{const f=isFs();b.textContent=f?'✕':'⛶';b.classList.toggle('on',f);b.title=b.ariaLabel=f?'Выйти из полноэкранного режима':'Во весь экран';setTimeout(updateCamera,120);};
+  const IC_IN='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>',IC_OUT='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>';b.innerHTML=IC_IN;
+  const upd=()=>{const f=isFs();b.innerHTML=f?IC_OUT:IC_IN;b.classList.toggle('on',f);b.title=b.ariaLabel=f?'Выйти из полноэкранного режима':'Во весь экран';setTimeout(updateCamera,120);};
   b.onclick=()=>{try{if(isFs())(d.exitFullscreen||d.webkitExitFullscreen).call(d);else{const r=(el.requestFullscreen||el.webkitRequestFullscreen).call(el);if(r&&r.catch)r.catch(()=>{b.hidden=true;});}}catch(e){b.hidden=true;}};
   d.addEventListener('fullscreenchange',upd);d.addEventListener('webkitfullscreenchange',upd);})();
 
